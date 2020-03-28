@@ -1,4 +1,4 @@
-package queueandstack;
+package jianzhioffer.queueandstack;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
