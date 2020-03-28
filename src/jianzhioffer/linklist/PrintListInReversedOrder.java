@@ -2,6 +2,8 @@ package jianzhioffer.linklist;
 
 import java.util.Stack;
 
+// 输入一个链表的头结点，从尾到头反过来打印出每个结点的值。
+// https://www.cnblogs.com/yongh/p/9622919.html
 public class PrintListInReversedOrder {
 
     public static void main(String[] args) {
