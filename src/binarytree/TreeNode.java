@@ -1,12 +1,12 @@
 package binarytree;
 
-public class Node {
+public class TreeNode {
 
     int value;
-    Node leftChild;
-    Node rightChild;
+    TreeNode leftChild;
+    TreeNode rightChild;
 
-    Node(int n) {
+    TreeNode(int n) {
         value = n;
     }
 

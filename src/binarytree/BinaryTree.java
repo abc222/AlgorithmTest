@@ -1,11 +1,13 @@
 package binarytree;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 // https://blog.csdn.net/fengrunche/article/details/52305748
 public class BinaryTree {
 
-    private Node root = null;
+    private TreeNode root = null;
 
     BinaryTree(int value) {
         root.value = value;
@@ -25,8 +27,8 @@ public class BinaryTree {
 //    public boolean delete(int value) {} //删除
 
     // 查找数据
-    public Node findKey(int value) {
-        Node current = root;
+    public TreeNode findKey(int value) {
+        TreeNode current = root;
         while (true) {
             if (current.value == value) {
                 return current;
@@ -43,27 +45,27 @@ public class BinaryTree {
     // 插入数据
     public String insert(int value) {
         String error = null;
-        Node node = new Node(value);
+        TreeNode treeNode = new TreeNode(value);
         if (root == null) {
-            root = node;
+            root = treeNode;
             root.leftChild = null;
             root.rightChild = null;
         } else {
-            Node current = root;
-            Node parent = null;
+            TreeNode current = root;
+            TreeNode parent = null;
             while (true) {
                 if (value < current.value) {
                     parent = current;
                     current = current.leftChild;
                     if (current == null) {
-                        parent.leftChild = node;
+                        parent.leftChild = treeNode;
                         break;
                     }
                 } else if (value > current.value) {
                     parent = current;
                     current = current.rightChild;
                     if (current == null) {
-                        parent.rightChild = node;
+                        parent.rightChild = treeNode;
                         break;
                     }
                 } else {
@@ -80,13 +82,13 @@ public class BinaryTree {
         inOrderTraverse(root);
     }
 
-    public void inOrderTraverse(Node node) {
-        if (node == null) {
+    public void inOrderTraverse(TreeNode treeNode) {
+        if (treeNode == null) {
             return;
         }
-        inOrderTraverse(node.leftChild);
-        node.show();
-        inOrderTraverse(node.rightChild);
+        inOrderTraverse(treeNode.leftChild);
+        treeNode.show();
+        inOrderTraverse(treeNode.rightChild);
     }
 
     /**
@@ -96,8 +98,8 @@ public class BinaryTree {
      * 3) 重复1、2步操作，直到current为空且栈内节点为空。
      **/
     public void inOrderByStack() {
-        Node current = root;
-        Stack<Node> stack = new Stack<>();
+        TreeNode current = root;
+        Stack<TreeNode> stack = new Stack<>();
         while (current != null || !stack.isEmpty()) {
             while (current != null) {
                 stack.push(current);
@@ -117,13 +119,13 @@ public class BinaryTree {
         preOrderTraverse(root);
     }
 
-    public void preOrderTraverse(Node node) {
-        if (node == null) {
+    public void preOrderTraverse(TreeNode treeNode) {
+        if (treeNode == null) {
             return;
         }
-        node.show();
-        preOrderTraverse(node.leftChild);
-        preOrderTraverse(node.rightChild);
+        treeNode.show();
+        preOrderTraverse(treeNode.leftChild);
+        preOrderTraverse(treeNode.rightChild);
     }
 
     /**
@@ -133,8 +135,8 @@ public class BinaryTree {
      * 3) 重复1、2步操作，直到current为空且栈内节点为空。
      */
     public void preOrderByStack() {
-        Node current = root;
-        Stack<Node> stack = new Stack<>();
+        TreeNode current = root;
+        Stack<TreeNode> stack = new Stack<>();
         while (current != null || !stack.isEmpty()) {
             while (current != null) {
                 stack.push(current);
@@ -154,13 +156,13 @@ public class BinaryTree {
         postOrderTraverse(root);
     }
 
-    public void postOrderTraverse(Node node) {
-        if (node == null) {
+    public void postOrderTraverse(TreeNode treeNode) {
+        if (treeNode == null) {
             return;
         }
-        postOrderTraverse(node.leftChild);
-        postOrderTraverse(node.rightChild);
-        node.show();
+        postOrderTraverse(treeNode.leftChild);
+        postOrderTraverse(treeNode.rightChild);
+        treeNode.show();
     }
 
     /**
@@ -169,11 +171,10 @@ public class BinaryTree {
      * 2）若左子树为空，取栈顶节点的右子树，如果右子树为空或右子树刚访问过，则访问该节点，并将preNode置为该节点
      * 3) 重复1、2步操作，直到current为空且栈内节点为空。
      */
-    // 还不太懂
     public void postOrderByStack() {
-        Node current = root;
-        Node preNode = null;
-        Stack<Node> stack = new Stack<>();
+        TreeNode current = root;
+        TreeNode preTreeNode = null;
+        Stack<TreeNode> stack = new Stack<>();
         while (current != null || !stack.isEmpty()) {
             while (current != null) {
                 stack.push(current);
@@ -181,12 +182,27 @@ public class BinaryTree {
             }
             if (!stack.isEmpty()) {
                 current = stack.peek().rightChild;
-                if (current == null || current == preNode) {
+                if (current == null || current == preTreeNode) {
                     current = stack.pop();
                     current.show();
-                    preNode = current;
+                    preTreeNode = current;
                     current = null;
                 }
+            }
+        }
+    }
+
+    public void levelOrderTraversal(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            System.out.println(node.value);
+            if (node.leftChild != null) {
+                queue.offer(node.leftChild);
+            }
+            if (node.rightChild != null) {
+                queue.offer(node.rightChild);
             }
         }
     }
