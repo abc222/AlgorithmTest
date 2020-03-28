@@ -32,6 +32,8 @@ public class IsListHasCycle {
     }
 
     // 求环的长度
+    // 环长 = 每一次速度差* 前进次数
+    // 速度相差1，环长 = 第二次相遇距离第一次相遇的前进次数
     public static int calCycleLength(Node node) {
         Node node1 = node;
         Node node2 = node;
@@ -53,6 +55,11 @@ public class IsListHasCycle {
     }
 
     // 求入环点
+    // 第一次相遇时，慢指针走了 D + S1
+    // 快指针走了 D + S1 + n（S1 + S2）
+    // 2（D + S1） = D + S1 + n（S1 + S2）
+    // 整理得：D = （n-1)（S1 + S2) + S2
+    // 所以第一次相遇以后，把一个指针放回头节点，两个指针每次走一步，再一次相遇的地方就是入环点
     public static Node calCyclePoint(Node node) {
         Node node1 = node;
         Node node2 = node;
