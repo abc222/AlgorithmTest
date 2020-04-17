@@ -33,5 +33,5 @@ public class LazySingleton {
         return mInstance;
     }
 
-    //private LazySingleton();
+    //private LazySingleton(){}
 }

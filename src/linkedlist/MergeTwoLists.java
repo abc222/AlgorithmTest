@@ -15,7 +15,7 @@ public class MergeTwoLists {
             linkList2.addFirstNode(i);
         }
         linkList2.show();
-        Node l3 = mergeTwoLists2(linkList1.first, linkList2.first);
+        ListNode l3 = mergeTwoLists2(linkList1.first, linkList2.first);
         while (l3 != null) {
             System.out.print(l3.data + " ");
             l3 = l3.next;
@@ -23,7 +23,7 @@ public class MergeTwoLists {
     }
 
     // 方法1 递归
-    public static Node mergeTwoLists(Node l1, Node l2) {
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
         } else if (l2 == null) {
@@ -38,9 +38,9 @@ public class MergeTwoLists {
     }
 
     // 方法2 迭代
-    public static Node mergeTwoLists2(Node l1, Node l2) {
-        Node preHead = new Node(-1);
-        Node prev = preHead;
+    public static ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
+        ListNode preHead = new ListNode(-1);
+        ListNode prev = preHead;
         while (l1 != null && l2 != null) {
             if (l1.data < l2.data) {
                 prev.next = l1;

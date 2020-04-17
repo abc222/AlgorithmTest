@@ -10,5 +10,5 @@ public class StaticInnerClassSingleton {
         return SingletonHolder.mInstance;
     }
 
-    //private StaticInnerClassSingleton();
+    //private StaticInnerClassSingleton(){}
 }
